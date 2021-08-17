@@ -1,0 +1,16 @@
+form {
+
+	display: flex;
+	flex-direction: column;
+	width: 30vw;
+	height: 40vw;
+	justify-content:flex-start;
+	margin: 0 auto;
+
+}
+
+input {
+
+	margin: 2px;
+
+}
