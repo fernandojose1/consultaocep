@@ -1,36 +1,45 @@
-<?php 
+<?php
 
 /* Desenvolvido por Fernando José
-    Aplicação com APi VIA CEP   */
-    // Chamando o script de consulta
-	include_once ('consultaocep.php');
-	
- ?>
+   Aplicação com API VIA CEP */
+// Chamando o script de consulta
+include_once 'consultaocep.php';
 
+function e(string $value): string
+{
+    return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+}
 
+?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-	<meta charset="utf-8">
-	<title>Consulta CEP</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Consulta CEP</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
-	<form action="." method="POST">
-		<p>Consulta CEP</p>
-		<input type="text" name="cep" placeholder="Digite o CEP" required value='<?php echo $endereco->cep?>'>
-		<input type="submit" name="btn" value="Buscar">
-		<input type="text" name="logradouro" placeholder="Logradouro" value='<?php echo $endereco->logradouro?>'>
-		<input type="text" name="Complemento" placeholder="Complemento" value='<?php echo $endereco->complemento?>'>
-		<input type="text" name="bairro" placeholder="Bairro" value='<?php echo $endereco->bairro?>'>
-		<input type="text" name="localidade" placeholder="Localidade" value='<?php echo $endereco->localidade?>'>
-		<input type="text" name="uf" placeholder="UF" value='<?php echo $endereco->uf?>'>
-		<input type="text" name="ibge" placeholder="IBGE" value='<?php echo $endereco->ibge?>'>
-		<input type="text" name="gia" placeholder="GIA" value='<?php echo $endereco->gia?>'>
-		<input type="text" name="ddd" placeholder="DDD" value='<?php echo $endereco->ddd?>'>
-		<input type="text" name="siafi" placeholder="SIAFI" value='<?php echo $endereco->siafi?>'>
-	</form>
+<form action="." method="POST">
+    <p>Consulta CEP</p>
+    <input type="text" name="cep" placeholder="Digite o CEP" required value="<?= e((string) $endereco->cep) ?>">
+    <input type="submit" name="btn" value="Buscar">
+
+    <?php if ($erroConsulta !== ''): ?>
+        <p class="erro"><?= e($erroConsulta) ?></p>
+    <?php endif; ?>
+
+    <input type="text" name="logradouro" placeholder="Logradouro" value="<?= e((string) $endereco->logradouro) ?>" readonly>
+    <input type="text" name="complemento" placeholder="Complemento" value="<?= e((string) $endereco->complemento) ?>" readonly>
+    <input type="text" name="bairro" placeholder="Bairro" value="<?= e((string) $endereco->bairro) ?>" readonly>
+    <input type="text" name="localidade" placeholder="Localidade" value="<?= e((string) $endereco->localidade) ?>" readonly>
+    <input type="text" name="uf" placeholder="UF" value="<?= e((string) $endereco->uf) ?>" readonly>
+    <input type="text" name="ibge" placeholder="IBGE" value="<?= e((string) $endereco->ibge) ?>" readonly>
+    <input type="text" name="gia" placeholder="GIA" value="<?= e((string) $endereco->gia) ?>" readonly>
+    <input type="text" name="ddd" placeholder="DDD" value="<?= e((string) $endereco->ddd) ?>" readonly>
+    <input type="text" name="siafi" placeholder="SIAFI" value="<?= e((string) $endereco->siafi) ?>" readonly>
+</form>
 
 </body>
 </html>
